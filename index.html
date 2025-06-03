@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Özür Dilerim</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Lobster', cursive;
             background-color: #f0f0f0;
             overflow: hidden;
         }
         #message {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 2.5em;
+            margin-top: 10vh;
+            margin-bottom: 40px;
             text-align: center;
         }
         #yesButton {
@@ -30,6 +32,9 @@
             background-color: #4CAF50;
             color: white;
             transition: transform 0.3s;
+            position: absolute;
+            left: 30%;
+            top: calc(10vh + 100px);
         }
         #noButton {
             padding: 15px 30px;
@@ -40,12 +45,14 @@
             background-color: #ff0000;
             color: white;
             position: absolute;
+            right: 30%;
+            top: calc(10vh + 100px);
             transition: all 0.2s;
         }
     </style>
 </head>
 <body>
-    <div id="message">Aşkım özür dilerim barışalım mı?</div>
+    <div id="message">Aşkım özür dilerim barışalım mıı</div>
     <button id="yesButton" onclick="sayYes()">Evet</button>
     <button id="noButton" onclick="moveNoButton()">Hayır</button>
 
@@ -62,9 +69,11 @@
             const newX = Math.random() * maxX;
             const newY = Math.random() * maxY;
             noButton.style.left = `${newX}px`;
+            noButton.style.right = 'auto';
             noButton.style.top = `${newY}px`;
 
-            yesButton.style.transform = `scale(${1 + noClickCount * 0.2})`;
+            yesButton.style.left = '50%';
+            yesButton.style.transform = `translateX(-50%) scale(${1 + noClickCount * 0.2})`;
 
             if (noClickCount >= 5) {
                 noButton.style.display = 'none';
@@ -73,19 +82,23 @@
         }
 
         function sayYes() {
-            message.textContent = 'OLEEYYY biliyodum affedeceğini seni çok seviyorum';
+            message.textContent = 'OLEEYYY biliyodum affedeceğini seni çok seviyorum 💗';
             yesButton.style.display = 'none';
             noButton.style.display = 'none';
             message.style.fontSize = '3em';
-            message.style.color = '#4CAF50';
+            message.style.color = '#000000';
         }
 
         window.addEventListener('resize', () => {
             const maxX = window.innerWidth - noButton.offsetWidth;
             const maxY = window.innerHeight - noButton.offsetHeight;
-            if (noButton.style.left) {
+            if (noButton.style.left && noButton.style.display !== 'none') {
                 noButton.style.left = `${Math.min(parseFloat(noButton.style.left), maxX)}px`;
                 noButton.style.top = `${Math.min(parseFloat(noButton.style.top), maxY)}px`;
+            }
+            if (noClickCount > 0) {
+                yesButton.style.left = '50%';
+                yesButton.style.transform = `translateX(-50%) scale(${1 + noClickCount * 0.2})`;
             }
         });
     </script>
