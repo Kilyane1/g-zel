@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Özür Dilerim</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        #message {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #yesButton {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            transition: transform 0.3s;
+        }
+        #noButton {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #ff0000;
+            color: white;
+            position: absolute;
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div id="message">Aşkım özür dilerim barışalım mı?</div>
+    <button id="yesButton" onclick="sayYes()">Evet</button>
+    <button id="noButton" onclick="moveNoButton()">Hayır</button>
+
+    <script>
+        let noClickCount = 0;
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const message = document.getElementById('message');
+
+        function moveNoButton() {
+            noClickCount++;
+            const maxX = window.innerWidth - noButton.offsetWidth;
+            const maxY = window.innerHeight - noButton.offsetHeight;
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+            noButton.style.left = `${newX}px`;
+            noButton.style.top = `${newY}px`;
+
+            yesButton.style.transform = `scale(${1 + noClickCount * 0.2})`;
+
+            if (noClickCount >= 5) {
+                noButton.style.display = 'none';
+                yesButton.textContent = 'BAŞKA ÇAREN YOK GÜZELİM';
+            }
+        }
+
+        function sayYes() {
+            message.textContent = 'OLEEYYY biliyodum affedeceğini seni çok seviyorum';
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+            message.style.fontSize = '3em';
+            message.style.color = '#4CAF50';
+        }
+
+        window.addEventListener('resize', () => {
+            const maxX = window.innerWidth - noButton.offsetWidth;
+            const maxY = window.innerHeight - noButton.offsetHeight;
+            if (noButton.style.left) {
+                noButton.style.left = `${Math.min(parseFloat(noButton.style.left), maxX)}px`;
+                noButton.style.top = `${Math.min(parseFloat(noButton.style.top), maxY)}px`;
+            }
+        });
+    </script>
+</body>
+</html>
