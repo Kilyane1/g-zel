@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Özür Dilerim</title>
+    <title>Güzelsin</title>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <style>
         body {
@@ -52,7 +52,7 @@
     </style>
 </head>
 <body>
-    <div id="message">Aşkım özür dilerim barışalım mıı</div>
+    <div id="message">Saçların Ve Sen Güzelsin Değil Mi?</div>
     <button id="yesButton" onclick="sayYes()">Evet</button>
     <button id="noButton" onclick="moveNoButton()">Hayır</button>
 
@@ -77,12 +77,12 @@
 
             if (noClickCount >= 5) {
                 noButton.style.display = 'none';
-                yesButton.textContent = 'BAŞKA ÇAREN YOK GÜZELİM';
+                yesButton.textContent = 'Hayır öylesin';
             }
         }
 
         function sayYes() {
-            message.textContent = 'OLEEYYY biliyodum affedeceğini seni çok seviyorum 💗';
+            message.textContent = 'Bak Kabul Ettın İşte Güzel Olduğunu';
             yesButton.style.display = 'none';
             noButton.style.display = 'none';
             message.style.fontSize = '3em';
